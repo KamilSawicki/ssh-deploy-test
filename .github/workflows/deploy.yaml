@@ -1,0 +1,16 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - *
+
+steps:
+- name: Run a command remotely
+  uses: docker://evaneos/ssh-action:0.1.0
+  with:
+    hosts: ${{ secrets.HOST }}
+    user: ${{ secrets.USER }}
+    private_key: ${{ secrets.PASSWORD }}
+    port: ${{ secrets.PORT }}
+    commands: echo "Hello world!"
